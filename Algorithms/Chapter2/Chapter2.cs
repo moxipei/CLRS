@@ -19,24 +19,54 @@
             }
         }
 
-        /// <summary>
-        /// Recursion Insert sort
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="n">n is data's size</param>
-        public static void InsertSort(int[] data, int n)
+        private static void Merge(int[] data, int start, int mid, int end)
         {
-            if (n > 0)
+            int length1 = mid - start + 1;
+            int length2 = end - mid;  
+
+            var Left = new int[length1 + 1];
+            var Right = new int[length2 + 1];
+
+            int Lindex = 0, Rindex = 0; //Left array index,Right array index
+
+            for (; Lindex < length1; ++Lindex)
             {
-                int i = n - 1;
-                InsertSort(data, i);
-                int key = data[n];
-                if (n > 0 && key < data[n - 1])
+                Left[Lindex] = data[start + Lindex];
+            }
+
+            for (; Rindex < length2; ++Rindex)
+            {
+                Right[Rindex] = data[mid + Rindex + 1];
+            }
+
+            Left[length1] = int.MaxValue;
+            Right[length2] = int.MaxValue;
+
+            Lindex = Rindex = 0;
+            for (int i = start; i <= end; ++i)
+            {
+                if (Left[Lindex] < Right[Rindex])
                 {
-                    data[n] = data[n - 1];
-                    data[n - 1] = key;
-                    InsertSort(data, n - 1);
+                    data[i] = Left[Lindex];
+                    ++Lindex;
                 }
+                else
+                {
+                    data[i] = Right[Rindex];
+                    ++Rindex;
+                }
+            }
+        }
+
+        public static void MergeSort(int[] data, int start, int end)
+        {
+            if (end == data.Length) --end;
+            if (start < end)
+            {
+                int mid = (end + start) / 2;
+                MergeSort(data, start, mid);
+                MergeSort(data, mid + 1, end);
+                Merge(data, start, mid, end);
             }
         }
     }
