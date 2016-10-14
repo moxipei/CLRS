@@ -18,7 +18,7 @@
             }
         }
 
-        public static int? Exer2_1_3(int[] data,int value)
+        public static int? Exer2_1_3(int[] data, int value)
         {
             for (int i = 0; i < data.Length; ++i)
             {
@@ -118,7 +118,42 @@
                     Exer2_3_4(data, n - 1);
                 }
             }
-        
+
+        }
+
+
+        public static int Exer2_3_5_Recursion(int[] data)
+        {
+            return 0;
+        }
+
+        public static int Exer2_3_5_Iteration(int[] data, int search)
+        {
+            int left, mid, right;
+            left = 0;
+            mid = data.Length / 2;
+            right = data.Length - 1;
+
+            while (left < right)
+            {
+                mid = (right + left) / 2;
+                if (data[mid] < search)
+                {
+                    left = mid;
+                }
+                else if(data[mid] > search)
+                {
+                    right = mid;
+                }
+                else
+                {
+                    return mid;
+                }
+
+            }
+
+            return 0;
+
         }
     }
 }

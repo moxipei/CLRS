@@ -5,10 +5,12 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            var testdata = GetRandomArray(10);
+            //var testdata = GetRandomArray(10);
+            var testdata = new int[] {  1, 2, 3, 4, 5, 6, 7, 8, 9,10 };
             Display(testdata);
             //Chapter2.InsertSort(testdata);
-            Display(testdata);
+            //Display(testdata);
+            Console.WriteLine(Exercises2.Exer2_3_5_Iteration(testdata,3));
             Console.ReadKey();
         }
         #region Functions
